@@ -1,15 +1,15 @@
 # == Resource: go_carbon::service
 # == Description: Installs an upstart / systemd service definition.
 define go_carbon::service(
-  $service_name = $title, 
-  $service_ensure = 'running', 
+  $service_name = $title,
+  $service_ensure = 'running',
   $service_enable = true)
 {
   case $::operatingsystemmajrelease {
     '6': {
       # Put the upstart config file
       file { "/etc/init/go-carbon_${service_name}.conf":
-        ensure => $go_carbon::ensure,
+        ensure  => $go_carbon::ensure,
         content => template("${module_name}/upstart.go-carbon.conf.erb")
       }
 
@@ -28,7 +28,7 @@ define go_carbon::service(
 
     '7': {
       file { "${::go_carbon::systemd_service_folder}/go-carbon_${service_name}.service":
-        ensure => $go_carbon::ensure,
+        ensure  => $go_carbon::ensure,
         mode    => '0644',
         owner   => 'root',
         group   => 'root',

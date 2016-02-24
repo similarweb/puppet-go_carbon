@@ -6,9 +6,9 @@ class go_carbon::install inherits go_carbon {
   }
 
   user { $go_carbon::user:
-    ensure  => $go_carbon::ensure,
-    gid     => $go_carbon::group,
-    shell   => '/sbin/nologin'
+    ensure => $go_carbon::ensure,
+    gid    => $go_carbon::group,
+    shell  => '/sbin/nologin'
   }
 
   package { $go_carbon::package_name:

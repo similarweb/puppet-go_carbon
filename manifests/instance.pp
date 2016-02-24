@@ -2,8 +2,8 @@
 # == Description: Defines a go-carbon service instance, including service management
 #
 define go_carbon::instance(
-  $service_name                    = $title,  
-  $ensure                          = 'present', 
+  $service_name                    = $title,
+  $ensure                          = 'present',
   $log_file                        = $go_carbon::params::log_file,
   $log_level                       = $go_carbon::params::log_level,
   $service_enable                  = $go_carbon::params::service_enable,
@@ -92,7 +92,7 @@ define go_carbon::instance(
 
   file {
     "${go_carbon::config_dir}/${service_name}.conf":
-      ensure => $ensure,
+      ensure  => $ensure,
       content => template("${module_name}/go-carbon.conf.erb")
   } ->
   go_carbon::service { $service_name: }
