@@ -1,0 +1,61 @@
+# ------ THIS FILE IS MANAGED BY PUPPET ------ #
+
+[common]
+# Run as user. Works only in daemon mode
+user = "<%= @user %>"
+# If logfile is empty use stderr
+logfile = "<%= @log_file %>"
+# Logging error level. Valid values: "debug", "info", "warn", "warning", "error"
+log-level = "<%= @log_level %>"
+# Prefix for store all internal go-carbon graphs. Supported macroses: {host}
+graph-prefix = "<%= @internal_graph_prefix %>"
+# Interval of storing internal metrics. Like CARBON_METRIC_INTERVAL
+metric-interval = "<%= @internal_metrics_interval %>"
+# Increase for configuration with multi persisters
+max-cpu = <%= @max_cpu %>
+
+[whisper]
+data-dir = "<%= @whisper_data_dir %>"
+# http://graphite.readthedocs.org/en/latest/config-carbon.html#storage-schemas-conf. Required
+schemas-file = "<%= @whisper_schemas_file %>"
+# http://graphite.readthedocs.org/en/latest/config-carbon.html#storage-aggregation-conf. Optional
+aggregation-file = "<%= @whisper_aggregation_file %>"
+# Workers count. Metrics sharded by "crc32(metricName) % workers"
+workers = <%= @whisper_workers %>
+# Limits the number of whisper update_many() calls per second. 0 - no limit
+max-updates-per-second = <%= @whisper_max_updates_per_second %>
+enabled = <%= @whisper_enabled %>
+
+[cache]
+# Limit of in-memory stored points (not metrics)
+max-size = <%= @cache_max_size %>
+# Capacity of queue between receivers and cache
+input-buffer = <%= @cache_input_buffer %>
+
+[udp]
+listen = "<%= @udp_listen %>"
+enabled = <%= @udp_enabled %>
+# Enable optional logging of incomplete messages (chunked by MTU)
+log-incomplete = <%= @udp_log_incomplete  %>
+
+[tcp]
+listen = "<%= @tcp_listen %>"
+enabled = <%= @tcp_enabled %>
+
+[pickle]
+listen = "<%= @pickle_listen %>"
+enabled = <%= @pickle_enabled %>
+# Limit message size for prevent memory overflow
+max-message-size = <%= @pickle_max_message_size %>
+
+[carbonlink]
+listen = "<%= @carbonlink_listen %>"
+enabled = <%= @carbonlink_enabled %>
+# Close inactive connections after "read-timeout"
+read-timeout = "<%= @carbonlink_read_timeout %>"
+# Return empty result if cache not reply
+query-timeout = "<%= @carbonlink_query_timeout %>"
+
+[pprof]
+listen = "<%= @pprof_listen %>"
+enabled = <%= @pprof_enabled %>

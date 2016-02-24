@@ -1,0 +1,21 @@
+# ------ THIS FILE IS MANAGED BY PUPPET ------ #
+
+#
+# go-carbon.conf - Golang implementation of Graphite/Carbon server
+#
+
+description     "Golang implementation of Graphite/Carbon server"
+author          "devops@similarweb.com"
+
+# When to start the service
+start on runlevel [2345]
+
+# When to stop the service
+stop on runlevel [06]
+
+# If the process quits unexpectadly trigger a respawn
+respawn
+
+env GOMAXPROCS=<%= @go_maxprocs %>
+# Start the process
+exec <%= @executable %> --config <%= @config_dir %>/<%= @service_name %>.conf

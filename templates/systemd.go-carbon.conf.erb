@@ -1,0 +1,16 @@
+[Unit]
+Description= Golang implementation of Graphite/Carbon server
+Wants=basic.target
+After=basic.target network.target
+
+[Service]
+Environment="GOMAXPROCS=<%= @go_maxprocs %>"
+ExecStart=<%= @executable %> --config <%= @config_dir %>/<%= @service_name %>.conf
+ExecReload=/bin/kill -HUP $MAINPID
+KillMode=process
+Restart=on-failure
+User=<%= @user %>
+Group=<%= @group %>
+
+[Install]
+WantedBy=multi-user.target

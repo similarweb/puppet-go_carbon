@@ -1,0 +1,25 @@
+{
+  "name": "similarweb-go_carbon",
+  "version": "0.1.0",
+  "author": "SimilarWeb",
+  "summary": "Golang implementation of Graphite/Carbon server with classic architecture: Agent -> Cache -> Persister",
+  "license": "BSD-2-Clause-FreeBSD",
+  "source": "https://github.com/SimilarWeb/puppet-go_carbon",
+  "project_page": "https://github.com/SimilarWeb/puppet-go_carbon",
+  "issues_url": "https://github.com/SimilarWeb/puppet-go_carbon/issues",
+  "tags": ["carbon","whisper","graphite"],
+    "operatingsystem_support": [
+    { "operatingsystem":"RedHat", "operatingsystemrelease":  ["6", "7"] }
+  ],
+  "requirements": [
+    {
+      "name": "puppet",
+      "version_requirement": ">=3.8.2 < 4.0.0"
+    }
+  ],
+  "dependencies": [
+    {"name":"puppetlabs-stdlib","version_requirement":">= 4.11.0"},
+    {"name":"camptocamp-systemd","version_requirement":">= 0.2.2"}    
+  ],
+   "description": "Golang implementation of Graphite/Carbon server with classic architecture: Agent -> Cache -> Persister"
+}
