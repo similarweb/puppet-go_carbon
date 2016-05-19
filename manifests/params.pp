@@ -86,7 +86,7 @@ class go_carbon::params {
   $pprof_listen                       = '127.0.0.1:7007'
   $pprof_enabled                      = false
   $download_package                   = false
-  $download_deb_url                   = "https://github.com/lomik/go-carbon/releases/download/v${go_carbon::version}/go-carbon_${go_carbon::version}_amd64.deb"
+  $download_deb_url                   = "https://github.com/lomik/go-carbon/releases/download/v${version}/go-carbon_${version}_amd64.deb"
   $shell                              = $::osfamily ? {
     'RedHat' => '/sbin/nologin',
     'Debian' => '/usr/sbin/nologin',
