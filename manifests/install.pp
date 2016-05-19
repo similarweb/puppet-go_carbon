@@ -16,7 +16,7 @@ class go_carbon::install inherits go_carbon {
       if $go_carbon::download_package {
         ensure_resource(package, ['wget'])
         exec { 'download package from release':
-          command => "/usr/bin/wget https://github.com/lomik/go-carbon/releases/download/v${go_carbon::version}/go-carbon_${go_carbon::version}_amd64.deb",
+          command => "/usr/bin/curl -s -o /tmp/go-carbon_${go_carbon::version}_amd64.deb ${go_carbon::download_deb_url}",
           cwd     => '/tmp',
           creates => "/tmp/go-carbon_${go_carbon::version}_amd64.deb",
         } ~>
