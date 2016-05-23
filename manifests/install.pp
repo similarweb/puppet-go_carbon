@@ -14,7 +14,6 @@ class go_carbon::install inherits go_carbon {
   case $::osfamily {
     'Debian': {
       if $go_carbon::download_package {
-        ensure_resource(package, ['wget'])
         exec { 'download package from release':
           command => "/usr/bin/curl -s -o /tmp/go-carbon_${go_carbon::version}_amd64.deb ${go_carbon::download_deb_url}",
           cwd     => '/tmp',
