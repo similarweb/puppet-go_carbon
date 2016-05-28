@@ -26,7 +26,7 @@ define go_carbon::service(
       }
     }
 
-    '7': {
+    '7', '16.04': {
       file { "${::go_carbon::systemd_service_folder}/go-carbon_${service_name}.service":
         ensure  => $go_carbon::ensure,
         mode    => '0644',
@@ -38,6 +38,7 @@ define go_carbon::service(
       service { "go-carbon_${service_name}":
         ensure    => $service_ensure,
         enable    => $service_enable,
+        provider  => systemd,
         subscribe =>
         [
           File["${go_carbon::systemd_service_folder}/go-carbon_${service_name}.service"],

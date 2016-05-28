@@ -2,8 +2,14 @@
 # == Description: Default parameters
 class go_carbon::params {
   $package_name                       = 'go-carbon'
-  $version                            = '0.7-1.el6'
-  $executable                         = '/usr/local/bin/go-carbon'
+  $version                            = $::osfamily ? {
+    'RedHat' => '0.7-1.el6',
+    'Debian' => '0.7.1',
+  }
+  $executable                         = $::osfamily ? {
+    'RedHat' => '/usr/local/bin/go-carbon',
+    'Debian' => '/usr/sbin/go-carbon',
+  }
   $config_dir                         = '/etc/go-carbon'
   $systemd_service_folder             = '/lib/systemd/system'
   $service_enable                     = true
@@ -12,7 +18,7 @@ class go_carbon::params {
   $storage_schemas = [
     {
       'default_1min_for_7day' => {
-        pattern => '*',
+        pattern => '.*',
         retentions => '60s:7d'
       }
     }
@@ -31,9 +37,9 @@ class go_carbon::params {
   $group                              = 'gocarbon'
   # If logfile is empty use stderr
   $log_file                           = '/var/log/go-carbon/go-carbon.log'
-  # Logging error level. Valid values: "debug", "info", "warn", "warning", "error"  
+  # Logging error level. Valid values: "debug", "info", "warn", "warning", "error"
   $log_level                          = 'info'
-  # Prefix for store all internal go-carbon graphs. Supported macroses: {host}  
+  # Prefix for store all internal go-carbon graphs. Supported macroses: {host}
   $internal_graph_prefix              = 'carbon.agents.{host}.'
   # Interval of storing internal metrics. Like CARBON_METRIC_INTERVAL
   $internal_metrics_interval          = '1m0s'
@@ -50,7 +56,7 @@ class go_carbon::params {
   # Limits the number of whisper update_many() calls per second. 0 - no limit
   $whisper_max_updates_per_second     = 0
   $whisper_enabled                    = true
-  
+
   # Limit of in-memory stored points (not metrics)
   $cache_max_size                     = 1000000
   # Capacity of queue between receivers and cache
@@ -79,4 +85,10 @@ class go_carbon::params {
 
   $pprof_listen                       = '127.0.0.1:7007'
   $pprof_enabled                      = false
+  $download_package                   = false
+  $download_deb_url                   = "https://github.com/lomik/go-carbon/releases/download/v${version}/go-carbon_${version}_amd64.deb"
+  $shell                              = $::osfamily ? {
+    'RedHat' => '/sbin/nologin',
+    'Debian' => '/usr/sbin/nologin',
+  }
 }
