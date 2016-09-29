@@ -34,7 +34,10 @@ define go_carbon::service(
         group   => 'root',
         content => template("${module_name}/systemd.go-carbon.conf.erb")
       } ~>
-      Exec['systemctl-daemon-reload']
+      exec { 'systemctl-daemon-reload':
+        command     => 'systemctl daemon-reload',
+        refreshonly => true,
+      }
       service { "go-carbon_${service_name}":
         ensure    => $service_ensure,
         enable    => $service_enable,
