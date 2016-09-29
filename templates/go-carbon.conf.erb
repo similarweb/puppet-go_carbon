@@ -24,6 +24,8 @@ aggregation-file = "<%= @whisper_aggregation_file %>"
 workers = <%= @whisper_workers %>
 # Limits the number of whisper update_many() calls per second. 0 - no limit
 max-updates-per-second = <%= @whisper_max_updates_per_second %>
+# Sparse file creation
+sparse-create = <%= @sparse_create %>
 enabled = <%= @whisper_enabled %>
 
 [cache]
@@ -31,6 +33,12 @@ enabled = <%= @whisper_enabled %>
 max-size = <%= @cache_max_size %>
 # Capacity of queue between receivers and cache
 input-buffer = <%= @cache_input_buffer %>
+# Strategy to persist metrics. Values: "max","sorted","noop"
+#   "max" - write metrics with most unwritten datapoints first
+#   "sorted" - sort by timestamp of first unwritten datapoint.
+#   "noop" - pick metrics to write in unspecified order,
+#            requires least CPU and improves cache responsiveness
+write-strategy = <%= @write_strategy %>
 
 [udp]
 listen = "<%= @udp_listen %>"
