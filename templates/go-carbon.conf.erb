@@ -32,6 +32,13 @@ enabled = <%= @whisper_enabled %>
 max-size = <%= @cache_max_size %>
 # Capacity of queue between receivers and cache
 input-buffer = <%= @cache_input_buffer %>
+# Capacity of queue between receivers and cache
+# Strategy to persist metrics. Values: "max","sorted","noop"
+#   "max" - write metrics with most unwritten datapoints first
+#   "sorted" - sort by timestamp of first unwritten datapoint.
+#   "noop" - pick metrics to write in unspecified order,
+#            requires least CPU and improves cache responsiveness
+write-strategy = "<%= @cache_write_strategy %>"
 
 [udp]
 listen = "<%= @udp_listen %>"
