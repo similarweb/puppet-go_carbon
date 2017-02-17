@@ -70,7 +70,7 @@ define go_carbon::instance(
   validate_bool($whisper_enabled)
   validate_integer($cache_max_size)
   validate_integer($cache_input_buffer)
-  validate_integer($cache_write_strategy)
+  validate_string($cache_write_strategy)
   validate_integer($go_maxprocs)
   validate_bool($service_enable)
 

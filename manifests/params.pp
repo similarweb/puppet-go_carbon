@@ -64,7 +64,7 @@ class go_carbon::params {
   $cache_max_size                     = 1000000
   # Capacity of queue between receivers and cache
   $cache_input_buffer                 = 51200
-  $cache_write_strategy               = max
+  $cache_write_strategy               = 'max'
 
   $udp_listen                         = '0.0.0.0:2003'
   # Enable optional logging of incomplete messages (chunked by MTU)
