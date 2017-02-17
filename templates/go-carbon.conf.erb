@@ -24,6 +24,7 @@ aggregation-file = "<%= @whisper_aggregation_file %>"
 workers = <%= @whisper_workers %>
 # Limits the number of whisper update_many() calls per second. 0 - no limit
 max-updates-per-second = <%= @whisper_max_updates_per_second %>
+sparse-create = <%= @whisper_sparse_create %>
 enabled = <%= @whisper_enabled %>
 
 [cache]
@@ -59,3 +60,31 @@ query-timeout = "<%= @carbonlink_query_timeout %>"
 [pprof]
 listen = "<%= @pprof_listen %>"
 enabled = <%= @pprof_enabled %>
+
+[carbonserver]
+listen = "<%= @carbonserver_listen %>"
+# Carbonserver support is still experimental and may contain bugs
+# Or be incompatible with github.com/grobian/carbonserver
+enabled = <%= @carbonserver_enabled %>
+# Buckets to track response times
+buckets = <%= @carbonserver_buckets %>
+# Maximum amount of globs in a single metric
+max-globs = <%= @carbonserver_max_globs %>
+# carbonserver-specific metrics will be sent as counters
+# For compatibility with grobian/carbonserver
+metrics-as-counters = <%= @carbonserver_metrics_as_counters %>
+# Read and Write timeouts for HTTP server
+read-timeout = "<%= @carbonserver_read_timeout %>"
+write-timeout = "<%= @carbonserver_write_timeout %>"
+# carbonserver keeps track of all available whisper files
+# in memory. This determines how often it will check FS
+# for new metrics.
+scan-frequency = "<%= @carbonserver_scan_frequency %>"
+
+[dump]
+# Enable dump/restore function on USR2 signal
+enabled = <%= @dump_enabled %>
+# Directory for store dump data. Should be writeable for carbon
+path = "<%= @dump_path %>"
+# Restore speed. 0 - unlimited
+restore-per-second = <%= @dump_restore_per_second %.
