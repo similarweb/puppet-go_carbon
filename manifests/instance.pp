@@ -59,7 +59,7 @@ define go_carbon::instance(
   validate_string($internal_metrics_interval)
 
   if $internal_metrics_endpoint {
-    validate_string($internal_metrics_endpoint
+    validate_string($internal_metrics_endpoint)
   }
 
   validate_integer($max_cpu)

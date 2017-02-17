@@ -109,7 +109,7 @@ class go_carbon::params {
   # Enable dump/restore function on USR2 signal
   $dump_enabled                       = false
   # Directory for store dump data. Should be writeable for carbon
-  $dump_path                          = undefA
+  $dump_path                          = undef
   # Restore speed. 0 - unlimited
   $dump_restore_per_second            = 0
 
