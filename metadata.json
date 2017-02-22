@@ -19,7 +19,6 @@
   ],
   "dependencies": [
     {"name":"puppetlabs-stdlib","version_requirement":">= 4.11.0"},
-    {"name":"camptocamp-systemd","version_requirement":">= 0.2.2"}    
   ],
    "description": "Golang implementation of Graphite/Carbon server with classic architecture: Agent -> Cache -> Persister"
 }
