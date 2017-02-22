@@ -70,7 +70,6 @@ define go_carbon::instance(
   validate_integer($cache_input_buffer)
   validate_string($cache_write_strategy)
   validate_integer($go_maxprocs)
-  validate_bool($service_enable)
 
   validate_re($udp_listen, '((?:[0-9]{1,3}\.){3}[0-9]{1,3})?:\d+',
     "Invalid udp listen ${udp_listen}. Must be {ip}:{port} or just :{port}")
