@@ -6,8 +6,6 @@ define go_carbon::instance(
   $ensure                          = 'present',
   $log_file                        = $go_carbon::params::log_file,
   $log_level                       = $go_carbon::params::log_level,
-  $service_enable                  = $go_carbon::params::service_enable,
-  $service_ensure                  = $go_carbon::params::service_ensure,
   $go_maxprocs                     = $go_carbon::params::go_maxprocs,
   $internal_graph_prefix           = $go_carbon::params::internal_graph_prefix,
   $internal_metrics_interval       = $go_carbon::params::internal_metrics_interval,
@@ -129,8 +127,7 @@ define go_carbon::instance(
     "${go_carbon::config_dir}/${service_name}.conf":
       ensure  => $ensure,
       content => template("${module_name}/go-carbon.conf.erb")
-  } ->
-  go_carbon::service { $service_name: }
+  }
 
   Class[$module_name] ->
   File["${go_carbon::config_dir}/${service_name}.conf"]
